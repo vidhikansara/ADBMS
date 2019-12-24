@@ -1,0 +1,88 @@
+select * from emp;
+
+1)
+
+Declare 
+    x number;
+    empno number;
+    esal number;
+    bal number;
+    hra number;
+    da number;
+Begin
+    x:=:Employee;
+    select SAL into esal from emp where NO=x;
+    dbms_output.put_line('Employee number is : '||esal);
+    hra:= esal*0.1;
+
+    dbms_output.put_line('hra  is : '||hra);
+    da:= esal*0.6;
+    dbms_output.put_line('da  is : '||da);
+
+    bal:= esal+hra+da;
+    dbms_output.put_line('net salary  is : '||bal);
+
+End;
+
+2)
+Declare 
+    x number;
+    empno number;
+    esal number;
+Begin
+    x:=:Employee;
+    select SAL into esal from emp where NO=x;
+    dbms_output.put_line('Employee number is : '||esal);
+    
+    IF (esal>60000) THEN
+             dbms_output.put_line('salary very high');
+    ELSIF (esal>30000 AND esal<60000) THEN
+              dbms_output.put_line('high salary');
+    ELSIF (esal>10000 AND esal<30000) THEN
+             dbms_output.put_line('medium salary');
+    ELSIF (esal<10000) THEN
+              dbms_output.put_line('less salary');
+
+    END IF;
+
+End;
+
+
+select * from product_master;
+
+alter table product_master add TOTPRICE number;
+
+update product_master set TOTPRICE=SELLPRICE+COSTPRICE;
+
+
+create table old_price
+(prod_id varchar(6),
+
+old_price number,
+
+new_price number,
+
+change_date date);
+
+
+insert into old_price values('P00001',1500,4000,'03-APR-19');
+update product_master set TOTPRICE=400 where PRODUCTNO='P00001';
+5)
+Declare
+    newprice number;
+
+    productprice number;
+    cdate date;
+
+Begin
+    cdate:=to_char(SYSDATE,'DD-MON-YY');
+    newprice:=:Enter;
+    select TOTPRICE into productprice from product_master where PRODUCTNO='P00001';
+    IF (productprice<4000) THEN
+             update product_master set TOTPRICE=newprice where PRODUCTNO='P00001';
+             dbms_output.put_line('record is updated in product master');
+             update old_price set new_price=newprice,change_date=cdate where prod_id='P00001';
+    END IF;
+End;
+
+select * from old_price;
