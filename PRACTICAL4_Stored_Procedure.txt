@@ -1,0 +1,58 @@
+declare 
+   x number;
+procedure square(a IN OUT number) IS
+
+begin 
+a:=a*a;
+end;
+begin
+x:=23;
+square(x);
+dbms_output.put_line('square is '||x);
+end;
+
+3)
+declare
+a number;
+b number;
+c number;
+d number;
+
+procedure findmin(x IN number,y IN number,w IN number,z OUT number) IS
+begin
+if (x>y AND x>w) then
+   z:=x;
+elsif (y>x AND y>w) then
+  z:=y;
+else
+  z:=w;
+end if;
+end;
+begin
+a:=:Number1;
+b:=:Number2;
+c:=:Number3;
+findmin(a,b,c,d);
+dbms_output.put_line('maximum '||d);
+end;
+
+1)
+declare 
+         x number;
+         f number:=1;
+         res number;
+procedure fact(a IN OUT number,ft IN OUT number,r OUT number) IS
+begin
+ for i in reverse 1..a loop
+      ft:=a*ft;
+      a:=a-1;
+ end loop;
+r:=ft;
+end;
+begin
+x:=:Number;
+fact(x,f,res);
+dbms_output.put_line('factorial '||res);
+end;
+   
+   
