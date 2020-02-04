@@ -1,0 +1,80 @@
+select * from emp;
+
+1)
+create or replace function avgsal(eid number) return number 
+is 
+dep varchar(20);
+avgs number:=0;
+begin
+select DEPA into dep from emp where NO=eid;
+select avg(sal) into avgs from emp where DEPA=dep;
+return avgs;
+end;
+
+declare 
+tot number(10,2);
+idno number;
+begin
+idno:=:Enter;
+ tot:=avgsal(idno);
+dbms_output.put_line('Average salary '||tot);
+end;
+
+2)
+create or replace function scmd_int(amount number,rate number,year number) return number
+is 
+sinst number;
+begin
+sinst:=(amount*rate*year)/100;
+return sinst;
+end;
+
+create or replace function ccmd_int(amount number,rate number,year number) return number
+is 
+cinst number;
+begin
+cinst:=amount*Power(1+(rate/100),year);
+return cinst;
+end;
+
+declare 
+am number;
+r number;
+yr number;
+choice number;
+begin
+am:=:Amount;
+r:=:Rate;
+yr:=:year;
+choice:=:enter_choice;
+case choice
+when 1 then dbms_output.put_line('simple interest result is '||scmd_int(am,r,yr));
+when 2 then dbms_output.put_line('compound interest result is '||ccmd_int(am,r,yr));
+end case;
+end;
+
+
+alter table emp 
+add Hiredate date;
+select * from emp;
+
+update emp set hiredate='01-apr-17' where no=4;
+
+3)
+create or replace function cal_exp(ex number) return number
+is
+empexp number;
+begin
+select MONTHS_BETWEEN(SYSDATE,hiredate) into empexp from emp where no=ex;
+return empexp;
+end;
+
+declare
+monexp number;
+eid number;
+begin
+eid:=:Enter_ID;
+monexp:=cal_exp(eid);
+dbms_output.put_line('employee '||eid||' has '||monexp||' months of experience');
+end;
+

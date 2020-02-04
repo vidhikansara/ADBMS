@@ -1,0 +1,85 @@
+MongoDB Enterprise >  db.Books.insert({"title":"AJ","author":"John","publisher":"ddu","pub_year":"2015","keywords":["servlet","jsp"]});
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.Books.insert({"title":"APT","author":"hmp","publisher":"ddu","pub_year":"2018","keywords":["web","window"]});
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.Books.insert({"title":"OOSD","author":"MS","publisher":"ddu","pub_year":"2016","keywords":["uml","object"]});
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.Books.insert({"title":"DM","author":"upp","publisher":"ddu","pub_year":"2019","keywords":["apriori","fp"]});
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.Books.insert({"title":"ADBMS","author":"anr","publisher":"ddu","pub_year":"2020","keywords":["two","three"]});
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.Books.pretty();
+2020-02-03T21:56:13.170-0700 E  QUERY    [js] uncaught exception: TypeError: db.Books.pretty is not a function :
+@(shell):1:1
+MongoDB Enterprise > db.Books.find().pretty();
+{
+        "_id" : ObjectId("5e38f850d1d67e29624b8d16"),
+        "title" : "AJ",
+        "author" : "John",
+        "publisher" : "ddu",
+        "pub_year" : "2015",
+        "keywords" : [
+                "servlet",
+                "jsp"
+        ]
+}
+{
+        "_id" : ObjectId("5e38f8a1d1d67e29624b8d17"),
+        "title" : "APT",
+        "author" : "hmp",
+        "publisher" : "ddu",
+        "pub_year" : "2018",
+        "keywords" : [
+                "web",
+                "window"
+        ]
+}
+{
+        "_id" : ObjectId("5e38f8dad1d67e29624b8d18"),
+        "title" : "OOSD",
+        "author" : "MS",
+        "publisher" : "ddu",
+        "pub_year" : "2016",
+        "keywords" : [
+                "uml",
+                "object"
+        ]
+}
+{
+        "_id" : ObjectId("5e38f907d1d67e29624b8d19"),
+        "title" : "DM",
+        "author" : "upp",
+        "publisher" : "ddu",
+        "pub_year" : "2019",
+        "keywords" : [
+                "apriori",
+                "fp"
+        ]
+}
+{
+        "_id" : ObjectId("5e38f933d1d67e29624b8d1a"),
+        "title" : "ADBMS",
+        "author" : "anr",
+        "publisher" : "ddu",
+        "pub_year" : "2020",
+        "keywords" : [
+                "two",
+                "three"
+        ]
+}
+MongoDB Enterprise > db.Books.find("author":"John").pretty();
+2020-02-03T21:57:09.082-0700 E  QUERY    [js] uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:22
+MongoDB Enterprise > db.Books.find({"author":"John"}).pretty();
+{
+        "_id" : ObjectId("5e38f850d1d67e29624b8d16"),
+        "title" : "AJ",
+        "author" : "John",
+        "publisher" : "ddu",
+        "pub_year" : "2015",
+        "keywords" : [
+                "servlet",
+                "jsp"
+        ]
+}
+MongoDB Enterprise >
